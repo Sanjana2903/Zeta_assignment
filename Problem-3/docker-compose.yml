@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: zeta
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: zeta_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=zeta
+      - DB_PASSWORD=secret
+      - DB_NAME=zeta_db
+    depends_on:
+      - db
+
+volumes:
+  db-data:
