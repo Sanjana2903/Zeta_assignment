@@ -1,5 +1,5 @@
 # Zeta_assignment
-#Problem -1:
+# Problem -1:
 # Banking Dispute Automation (AI + API)
 
 ---
@@ -78,17 +78,19 @@ Here’s the end-to-end flow:
 
 ---
 
-#Future Roadmap
+# Future Roadmap
 To continue improving this project:
 - Replace keyword matching with fine-tuned AI models (OpenAI, Huggingface Transformers).
 - Connect disputes to a PostgreSQL database for historical tracking and analysis.
 - Add user authentication (OAuth, JWT) to secure endpoints.
 - Introduce retry logic and failover mechanisms for robustness.
 -Containerize the app using Docker for easy cloud deployment.
-#Final Thoughts
-I built this project carefully to mimic a real-world backend that:
+---
+# Final Thoughts
+- I built this project carefully to mimic a real-world backend that:
 - Starts simple,
 - Follows professional standards,
 - Leaves room to plug in stronger AI and analytics later.
 
-
+---
+# Problem-2
