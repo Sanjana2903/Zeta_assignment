@@ -125,18 +125,21 @@ When designing this project, I focused on maintaining clean separation of concer
 Instead of mixing business logic and API routes into a single file, I separated them:
 - app.py deals only with application logic (calculation, processing, etc.).
 - api.py handles request parsing, response generation, and connects user requests to the core logic.
+
 This separation ensures that:
 
 - The project is easy to maintain.
 - Logic can evolve independently without affecting API structure.
 - Future testing (unit testing for app.py) becomes much easier.
 - New routes or logic can be added without messy refactoring.
+
 Additionally, using FastAPI gives the project:
 
 - Automatic documentation through Swagger UI (/docs).
 - Pydantic data validation support.
 - Asynchronous capabilities if needed in future enhancements.
-Future Improvements
+
+## Future Improvements
 
 - Add unit tests for the core logic in app.py using pytest.
 - Implement input validation using Pydantic models.
@@ -217,6 +220,70 @@ When designing this project, I made sure to separate concerns cleanly:
 - This project simulates a real-world full-stack setup where the backend, database, and user-facing interface work together.
 - It is structured to allow easy extension, scalability, and maintainability for future enhancements.
 
+# Problem 4 - Zeta Assignment
+
+---
+
+## Overview
+
+This project implements two types of **rate limiting algorithms**:
+
+- **Sliding Window Log** (`rate_limiter.py`)
+- **Token Bucket Algorithm** (`token_bucket_limiter.py`)
+
+Both algorithms aim to **control the rate** at which actions (like API requests) are allowed, protecting systems from being overwhelmed by high traffic.
+
+The code demonstrates:
+- How different rate limiting strategies work.
+- The trade-offs between precision, memory efficiency, and scalability.
+
+---
+## 🔁 Trade-Offs: Sliding Window vs Token Bucket
+
+| Feature              | Sliding Window Log               | Token Bucket                            |
+|----------------------|----------------------------------|------------------------------------------|
+| Precision            | High (tracks exact timestamps)   | Approximate (token-based)               |
+| Memory Efficiency    | Lower (stores timestamps)        | Higher (stores only token count & time) |
+| Burst Handling       | Harsh cut-off                    | Smooth burst tolerance                  |
+| Scalability          | Less scalable at high traffic    | More scalable for large user base       |
+| Implementation Ease  | Simple and intuitive             | Slightly more complex (timing logic)    |
+
+---
+
+## 🧪 Run Both
+
+python rate_limiter.py         # Sliding Window
+
+
+python token_bucket_limiter.py # Token Bucket
+
+Thought Process and Design
+
+When solving this problem, I wanted to showcase both:
+
+- A simple, precise way to rate limit using a sliding window of request timestamps.
+- A more scalable and efficient way using a token-based system.
+
+
+Sliding Window Log:
+
+- Great when precision matters (like preventing exactly 100 logins per minute).
+- But memory grows linearly with traffic (because it stores every timestamp).
+
+
+Token Bucket:
+
+- Allows more flexible handling of bursts.
+- Memory is constant regardless of traffic (just tokens and refill logic).
+- Used in real-world systems like Google Cloud APIs, AWS throttling, etc.
+
+
+Thus, both were implemented to compare ease, efficiency, and scalability.
+
+## Conclusion
+
+This project provides a hands-on demonstration of two popular rate limiting techniques.
+Understanding their behavior, trade-offs, and design patterns is crucial for building resilient, scalable backend systems.
 
 
 
