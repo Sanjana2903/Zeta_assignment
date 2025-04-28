@@ -203,14 +203,16 @@ When designing this project, I made sure to separate concerns cleanly:
 | `models.py`   | Defines strict Pydantic data models ensuring input/output consistency and validation. |
 | `main.py`     | Bridges external API requests to internal database operations (via FastAPI routes). |
 | `ui.py`       | Simplifies user interaction through a frontend web application built with Streamlit. |
-Future Improvements:
+
+## Future Improvements:
 
 - Implement authentication and authorization (OAuth/JWT).
 - Add error handling and input validations.
 - Expand UI for better UX (update/delete operations, better forms).
 - Add unit tests for backend API endpoints.
 - Dockerize the Streamlit UI as well into the same Compose setup.
-Conclusion:
+  
+##Conclusion:
 
 - This project simulates a real-world full-stack setup where the backend, database, and user-facing interface work together.
 - It is structured to allow easy extension, scalability, and maintainability for future enhancements.
