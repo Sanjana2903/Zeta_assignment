@@ -93,4 +93,130 @@ To continue improving this project:
 - Leaves room to plug in stronger AI and analytics later.
 
 ---
-# Problem-2
+# Problem 2 - Zeta Assignment
+
+---
+
+## Overview
+
+This project is part of the Zeta assignment and focuses on building a basic API-based application.  
+The application consists of two main components:
+- `app.py`: Core application logic
+- `api.py`: API endpoints built using FastAPI
+
+It demonstrates how to structure a simple Python project involving APIs and modular application logic.
+
+---
+
+## Project Structure
+
+- **`app.py`**:  
+  Houses the main functions or services that perform core business operations.
+
+- **`api.py`**:  
+  Connects the external world to the internal logic via FastAPI routes. Acts as the interface between the client and server.
+
+- **`requirements.txt`**:  
+  Lists all necessary Python libraries required to run the project.
+
+---
+When designing this project, I focused on maintaining clean separation of concerns:
+
+Instead of mixing business logic and API routes into a single file, I separated them:
+- app.py deals only with application logic (calculation, processing, etc.).
+- api.py handles request parsing, response generation, and connects user requests to the core logic.
+This separation ensures that:
+
+- The project is easy to maintain.
+- Logic can evolve independently without affecting API structure.
+- Future testing (unit testing for app.py) becomes much easier.
+- New routes or logic can be added without messy refactoring.
+Additionally, using FastAPI gives the project:
+
+- Automatic documentation through Swagger UI (/docs).
+- Pydantic data validation support.
+- Asynchronous capabilities if needed in future enhancements.
+Future Improvements
+
+- Add unit tests for the core logic in app.py using pytest.
+- Implement input validation using Pydantic models.
+- Expand the project to support database integration.
+
+---
+# Problem 3 - Zeta Assignment
+
+---
+
+## Overview
+
+This project demonstrates a basic full-stack setup where a Python application interacts with a PostgreSQL database through SQL queries, and provides a simple user interface (UI) for interaction.  
+It is part of the Zeta assignment aimed at showcasing backend, database, and containerization skills.
+
+The project covers:
+- Database setup using PostgreSQL
+- Backend application built with Python
+- Docker and Docker Compose for containerization
+- Clean separation between logic (`db.py`, `models.py`), API endpoints (`main.py`), and user interface (`ui.py`)
+
+
+---
+
+## How It Works
+
+1. **Database Setup** (`queries.sql`, `db.py`)
+   - A PostgreSQL database is used to store and retrieve information.
+   - `queries.sql` defines the database schema and tables.
+   - `db.py` manages database connection and query execution.
+
+2. **Backend Service** (`main.py`)
+   - Built using FastAPI.
+   - Exposes REST API endpoints to perform CRUD operations on the database.
+
+3. **Frontend User Interface** (`ui.py`)
+   - Built using Streamlit.
+   - Provides a simple web interface for users to interact with the system without directly using APIs.
+
+4. **Containerization** (`Dockerfile`, `docker-compose.yml`)
+   - `Dockerfile` sets up the backend service.
+   - `docker-compose.yml` orchestrates running both the PostgreSQL database and the FastAPI backend together.
+
+---
+
+Start services using Docker Compose:
+`docker-compose up --build`
+This will:
+- Start the PostgreSQL database container
+- Build and run the FastAPI backend
+
+Access the API Documentation: After the backend is running, open:
+`http://localhost:8000/docs`
+Access the UI: To launch the Streamlit UI separately:
+`streamlit run ui.py`
+Then visit:
+`http://localhost:8501/`
+When designing this project, I made sure to separate concerns cleanly:
+
+
+| **Component** | **Purpose** |
+|:--------------|:------------|
+| `db.py`       | Manages the direct communication with the PostgreSQL database (connection, queries). |
+| `models.py`   | Defines strict Pydantic data models ensuring input/output consistency and validation. |
+| `main.py`     | Bridges external API requests to internal database operations (via FastAPI routes). |
+| `ui.py`       | Simplifies user interaction through a frontend web application built with Streamlit. |
+Future Improvements:
+
+- Implement authentication and authorization (OAuth/JWT).
+- Add error handling and input validations.
+- Expand UI for better UX (update/delete operations, better forms).
+- Add unit tests for backend API endpoints.
+- Dockerize the Streamlit UI as well into the same Compose setup.
+Conclusion:
+
+- This project simulates a real-world full-stack setup where the backend, database, and user-facing interface work together.
+- It is structured to allow easy extension, scalability, and maintainability for future enhancements.
+
+
+
+
+
+
